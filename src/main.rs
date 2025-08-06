@@ -243,8 +243,8 @@ fn main() {
 }
 
 fn print_help() {
-    let help = "ColorLS-rs: a Rust implementation of colorls\n\n\
-Usage: colorls-rust [OPTIONS] [PATH]...\n\
+    let help = "rDir: a Rust implementation of directory listing\n\n\
+Usage: rDir [OPTIONS] [PATH]...\n\
 If no PATH is given, the current directory is listed.  Multiple paths\n\
 may be given and will be listed in sequence.\n\n\
 Options:\n\
@@ -462,7 +462,7 @@ fn list_dir(path: &Path, opts: &Options, counts: &mut Counts) {
     let read_dir = match fs::read_dir(path) {
         Ok(rd) => rd,
         Err(e) => {
-            eprintln!("colorls-rust: cannot access {}: {}", path.display(), e);
+            eprintln!("rDir: cannot access {}: {}", path.display(), e);
             return;
         }
     };
@@ -545,7 +545,7 @@ fn list_dir(path: &Path, opts: &Options, counts: &mut Counts) {
                 });
             }
             Err(e) => {
-                eprintln!("colorls-rust: error reading directory: {}", e);
+                eprintln!("rDir: error reading directory: {}", e);
             }
         }
     }
@@ -898,7 +898,7 @@ fn print_tree(current: &Path, root: &Path, prefix: String, depth: usize, opts: &
     let read_dir = match fs::read_dir(current) {
         Ok(rd) => rd,
         Err(e) => {
-            eprintln!("colorls-rust: cannot access {}: {}", current.display(), e);
+            eprintln!("rDir: cannot access {}: {}", current.display(), e);
             return;
         }
     };
@@ -975,7 +975,7 @@ fn print_tree(current: &Path, root: &Path, prefix: String, depth: usize, opts: &
                 });
             }
             Err(e) => {
-                eprintln!("colorls-rust: error reading directory: {}", e);
+                eprintln!("rDir: error reading directory: {}", e);
             }
         }
     }
