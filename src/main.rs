@@ -192,6 +192,10 @@ fn main() {
                 print_help();
                 return;
             }
+            "-v" | "--version" => {
+                print_version();
+                return;
+            }
             s if s.starts_with('-') => {
                 eprintln!("Unknown flag: {}", s);
                 std::process::exit(1);
@@ -286,9 +290,15 @@ Options:\n\
   --light                Use a light colour scheme (for light terminal backgrounds)\n\
   --dark                 Use the default dark colour scheme (default)\n\
   --non-human-readable   Print file sizes in bytes rather than a human readable format\n\
-  -h, --help             Print this help message\n";
+  -h, --help             Print this help message\n\
+  -v, --version          Print the version and exit\n";
     print!("{}", help);
     io::stdout().flush().unwrap();
+}
+
+fn print_version() {
+    // Use environment variable set by Cargo
+    println!("rdir version {}", env!("CARGO_PKG_VERSION"));
 }
 
 fn git_statuses(path: &Path) -> HashMap<PathBuf, GitState> {
