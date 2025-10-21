@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "rDir"
+name = "rdir"
 version = "1.0.0"
