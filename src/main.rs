@@ -211,7 +211,28 @@ fn main() {
         if multiple {
             println!("{}:", path.display());
         }
-        
+
+        // ADDED: handle files distinctly
+        if let Ok(metadata) = fs::metadata(path) {
+            if metadata.is_file() {
+                // Use existing utility functions for formats
+                let file_type = metadata.file_type();
+                let perm = perm_string(&file_type, &metadata);
+                let size_str = format_size(metadata.len(), opts.human_readable);
+                let mtime = metadata.modified().unwrap_or(SystemTime::UNIX_EPOCH);
+                let time_str = format_time(mtime);
+                println!("File: {}", path.display());
+                println!("Permissions: {}", perm);
+                println!("Size: {}", size_str);
+                println!("Last Modified: {}", time_str);
+                // Print a divider if multiple
+                if multiple && idx + 1 < paths.len() {
+                    println!();
+                }
+                continue; // Don't try to list as directory
+            }
+        }
+
         let mut counts = Counts::default();
         
         if let Some(depth) = opts.tree_depth {
