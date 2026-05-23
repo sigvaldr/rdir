@@ -74,7 +74,7 @@ pub fn get_file_icon(file_type: &std::fs::FileType, path: &std::path::Path) -> &
             "toml" | "yaml" | "yml" => CONFIG,
             "html" | "htm" => HTML,
             "css" => CSS,
-            "zip" | "tar" | "gz" | "tgz" | "bz2" | "xz" | "7z" | "rar" => ARCHIVE,
+            "zip" | "tar" | "gz" | "tgz" | "bz2" | "xz" | "7z" | "rar" | "box" => ARCHIVE,
             "png" | "jpg" | "jpeg" | "gif" | "bmp" | "svg" | "webp" => IMAGE,
             "mp3" | "flac" | "ogg" | "wav" | "aac" => AUDIO,
             "mp4" | "mkv" | "avi" | "mov" | "wmv" | "flv" => VIDEO,
@@ -90,4 +90,4 @@ pub fn get_file_icon(file_type: &std::fs::FileType, path: &std::path::Path) -> &
     } else {
         GENERIC_FILE
     }
-} 
+}
